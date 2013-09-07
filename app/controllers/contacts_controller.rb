@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   def index
     @contacts =  [
       {
+        id: 1,
         first_name: 'uschi',
         last_name: 'muschi',
       }
