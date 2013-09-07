@@ -17,5 +17,6 @@ gem 'jquery-rails'
 gem 'ember-rails'
 gem 'ember-source'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+group :development do
+  gem 'quiet_assets'
+end
