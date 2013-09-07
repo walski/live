@@ -20,7 +20,9 @@
 //= require twitter/bootstrap
 
 // for more details see: http://emberjs.com/guides/application/
-Live = Ember.Application.create();
+Live = Ember.Application.create({
+  LOG_TRANSITIONS: true
+});
 
 //= require_tree .
 

@@ -3,8 +3,9 @@ Live.Router.map(function() {
 });
 
 Live.IndexRoute = Ember.Route.extend({
-  model: function() {
+  setupController: function(controller) {
     var store = this.get('store');
-    return store.find('contact');
+    controller.set('contacts', store.find('contact'));
+    controller.set('sessions', store.find('session'));
   }
 });

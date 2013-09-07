@@ -1,12 +1,20 @@
-
-hallloooo
-
-<div id="home">
+<div id="contacts">
   <ul>
-    {{#each contact in model}}
+    {{#each contact in contacts}}
       <li>
         {{contact.firstName}}
         {{contact.lastName}}
+      </li>
+    {{/each}}
+  </ul>
+</div>
+
+<div id="sessions">
+  <ul>
+    {{#each session in sessions}}
+      <li>
+        {{session.time}}
+        {{session.title}}
       </li>
     {{/each}}
   </ul>
