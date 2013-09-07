@@ -23,3 +23,7 @@
 Live = Ember.Application.create();
 
 //= require_tree .
+
+$(document).ready(function () {
+  $('body').scrollspy({ target: '#navigation' });
+});
