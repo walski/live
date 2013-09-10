@@ -56,11 +56,9 @@ App.SessionsController = Ember.ArrayController.extend({
   }.property('@each', 'currentTime'),
 
   current: function() {
-    return this.find(function(session) {
-      var date = session.get('time');
-      var duration = 60;
-      return date <= App.currentTime && date > new Date(App.currentTime.getTime() - duration * 60000);
-    });
+    return this.filter(function(session) {
+      return session.get('time') <= App.currentTime;
+    }).get('lastObject');
   }.property('@each', 'currentTime'),
 
   currentTimeBinding: Ember.Binding.oneWay('App.currentTime')
