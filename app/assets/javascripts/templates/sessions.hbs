@@ -1,10 +1,8 @@
 <div id="next-up">
   <h2>Coming up next:</h2>
-  <ul>
-    {{#each session in nextUp}}
-      {{partial "sessionListItem"}}
-    {{/each}}
-  </ul>
+  <h3>
+    {{nextUp.time}}: {{nextUp.speaker}}
+  </h3>
 </div>
 
 <div id="sessions">

@@ -1,7 +1,7 @@
 Live.SessionsController = Ember.ArrayController.extend({
   nextUp: function() {
-    return this.filter(function(song) {
-      return true;
+    return this.find(function(session) {
+      return session.get('id') === '3';
     });
   }.property('@each')
 });
