@@ -1,9 +1,17 @@
 <div id="next-up">
   <h2>Coming up next:</h2>
-  <p>{{nextUp.speaker}}</p>
+  <p>
+    {{#each entry in nextUp}}
+      <li>
+        {{entry.time}}
+        {{entry.speaker}}
+      </li>
+    {{/each}}
+  </p>
 </div>
 
 <div id="sessions">
+  <h2>All Sessions:</h2>
   <ul>
     {{#each}}
       <li>
