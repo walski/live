@@ -1,0 +1,19 @@
+<h2>Index:</h2>
+
+{{#if controllers.sessions.current}}
+<div id="current">
+  <h2>Current:</h2>
+  <h3>
+    {{controllers.sessions.current.time}}: {{controllers.sessions.current.speaker}}
+  </h3>
+</div>
+{{/if}}
+
+{{#if controllers.sessions.nextUp}}
+<div id="next-up">
+  <h2>Coming up next:</h2>
+  <h3>
+    {{controllers.sessions.nextUp.time}}: {{controllers.sessions.nextUp.speaker}}
+  </h3>
+</div>
+{{/if}}

@@ -35,6 +35,10 @@ App.Session = DS.Model.extend({
   info: DS.attr('string')
 });
 
+App.IndexController = Ember.ObjectController.extend({
+  needs: ['sessions']
+});
+
 App.SessionsController = Ember.ArrayController.extend({
   nextUp: function() {
     return this.find(function(session) {
@@ -60,8 +64,9 @@ App.Router.map(function() {
 });
 
 App.IndexRoute = Ember.Route.extend({
-  redirect: function() {
-    this.transitionTo('sessions');
+  setupController: function(controller, model) {
+    var store = this.get('store');
+    this.controllerFor('sessions').set('model', store.find('session'));
   }
 });
 
