@@ -4,10 +4,6 @@ Live.Router.map(function() {
   });
 });
 
-// Live.Router.reopen({
-//   location: 'history'
-// });
-
 Live.IndexRoute = Ember.Route.extend({
   redirect: function() {
     this.transitionTo('sessions');
@@ -17,6 +13,6 @@ Live.IndexRoute = Ember.Route.extend({
 Live.SessionsRoute = Ember.Route.extend({
   model: function() {
     var store = this.get('store');
-    return store.find('session')
+    return store.find('session');
   }
 });

@@ -16,20 +16,23 @@
 //= require ember
 //= require ember-data
 //= require_self
-//= require live
+//= require_tree ./models
+//= require_tree ./controllers
+//= require_tree ./templates
+//= require router
 //= require twitter/bootstrap
 
-// for more details see: http://emberjs.com/guides/application/
+// start ember
+
 Live = Ember.Application.create({
-  LOG_TRANSITIONS: true,
   ready: function() {
     setInterval( function() {
-      Live.set('currentTime', new Date());
-    }, 1000)
+      Live.set('currentTime', new Date(2013, 8, 19, 12));
+    }, 1000);
   }
 });
 
-//= require_tree .
+// app specific
 
 $(document).ready(function () {
   $('body').scrollspy({ target: '#navigation' });
