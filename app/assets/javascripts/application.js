@@ -16,10 +16,7 @@
 //= require ember
 //= require ember-data
 //= require_self
-//= require_tree ./models
-//= require_tree ./controllers
 //= require_tree ./templates
-//= require router
 //= require twitter/bootstrap
 
 // start ember
@@ -31,6 +28,50 @@ App = Ember.Application.create({
     }, 1000);
   }
 });
+
+App.Session = DS.Model.extend({
+  time: DS.attr('date'),
+  speaker: DS.attr('string'),
+  info: DS.attr('string')
+});
+
+App.SessionsController = Ember.ArrayController.extend({
+  nextUp: function() {
+    return this.find(function(session) {
+      return session.get('time') >= App.currentTime;
+    });
+  }.property('@each', 'currentTime'),
+
+  current: function() {
+    return this.find(function(session) {
+      var date = session.get('time');
+      var duration = 60;
+      return date <= App.currentTime && date > new Date(App.currentTime.getTime() - duration * 60000);
+    });
+  }.property('@each', 'currentTime'),
+
+  currentTimeBinding: Ember.Binding.oneWay('App.currentTime')
+});
+
+App.Router.map(function() {
+  this.resource('sessions', function() {
+    this.resource('session', { path: ':session_id' });
+  });
+});
+
+App.IndexRoute = Ember.Route.extend({
+  redirect: function() {
+    this.transitionTo('sessions');
+  }
+});
+
+App.SessionsRoute = Ember.Route.extend({
+  model: function() {
+    var store = this.get('store');
+    return store.find('session');
+  }
+});
+
 
 // app specific
 
