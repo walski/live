@@ -21,7 +21,12 @@
 
 // for more details see: http://emberjs.com/guides/application/
 Live = Ember.Application.create({
-  LOG_TRANSITIONS: true
+  LOG_TRANSITIONS: true,
+  ready: function() {
+    setInterval( function() {
+      Live.set('currentTime', new Date());
+    }, 1000)
+  }
 });
 
 //= require_tree .
