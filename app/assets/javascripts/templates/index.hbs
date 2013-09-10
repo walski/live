@@ -1,9 +1,14 @@
+<div id="next-up">
+  <h2>Coming up next:</h2>
+  <p>{{nextUp.speaker}}</p>
+</div>
+
 <div id="sessions">
   <ul>
     {{#each}}
       <li>
         {{time}}
-        {{title}}
+        {{speaker}}
       </li>
     {{/each}}
   </ul>

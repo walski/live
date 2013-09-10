@@ -1,15 +1,8 @@
-Live.Router.map(function() {
-  this.route("contacts");
-  this.route("sessions");
-});
-
-Live.ContactsRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.find('contact');
-  }
-});
-Live.SessionsRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.find('session');
+Live.Router.map(function() {});
+ 
+Live.IndexRoute = Ember.Route.extend({
+  setupController: function(controller) {
+    var store = this.get('store');
+    controller.set('model', store.find('session'));
   }
 });

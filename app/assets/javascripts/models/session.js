@@ -1,4 +1,5 @@
 Live.Session = DS.Model.extend({
-  time: DS.attr('string'),
-  title: DS.attr('string')
+  time: DS.attr('date'),
+  speaker: DS.attr('string'),
+  info: DS.attr('string')
 });

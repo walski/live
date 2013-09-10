@@ -1,0 +1,146 @@
+{
+  "offset": 0,
+  "slots": [
+    {
+      "time": 1379582100,
+      "speaker": "Breakfast",
+      "info": ""
+    },
+    {
+      "time": 1379587500,
+      "speaker": "Jessica Allen",
+      "info": ""
+    },
+    {
+      "time": 1379591100,
+      "speaker": "Igor Terzic",
+      "info": ""
+
+    },
+    {
+      "time": 1379593800,
+      "speaker": "Coffee Break",
+      "info": ""
+    },
+    {
+      "time": 1379595600,
+      "speaker": "Dr. Nic Williams",
+      "info": ""
+    },
+    {
+      "time": 1379598300,
+      "speaker": "Lunch break",
+      "info": ""
+    },
+    {
+      "time": 1379601900,
+      "speaker": "Hans Christian Reinl",
+      "info": ""
+    },
+    {
+      "time": 1379604600,
+      "speaker": "Coffee Break",
+      "info": ""
+    },
+    {
+      "time": 1379606400,
+      "speaker": "Lightning talks",
+      "info": ""
+    },
+    {
+      "time": 1379610000,
+      "speaker": "Break",
+      "info": ""
+    },
+    {
+      "time": 1379611800,
+      "speaker": "Jason Costello",
+      "info": ""
+    },
+    {
+      "time": 1379614500,
+      "speaker": "Party & Buffet",
+      "info": ""
+    },
+    {
+      "time": 1379667600,
+      "speaker": "Sleep",
+      "info": ""
+    },
+    {
+      "time": 1379672100,
+      "speaker": "Hack & Break",
+      "info": ""
+    },
+    {
+      "time": 1379675700,
+      "speaker": "Andy Delcambre",
+      "info": ""
+    },
+    {
+      "time": 1379678400,
+      "speaker": "Coffee Break",
+      "info": ""
+    },
+    {
+      "time": 1379680200,
+      "speaker": "Astrid Bin",
+      "info": ""
+    },
+    {
+      "time": 1379682900,
+      "speaker": "Coffee Break",
+      "info": ""
+    },
+    {
+      "time": 1379684700,
+      "speaker": "Robin Boehm",
+      "info": ""
+    },
+    {
+      "time": 1379687400,
+      "speaker": "Lunch Break",
+      "info": ""
+    },
+    {
+      "time": 1379691000,
+      "speaker": "Michael Godfrey",
+      "info": ""
+    },
+    {
+      "time": 1379693700,
+      "speaker": "Break",
+      "info": ""
+    },
+    {
+      "time": 1379695500,
+      "speaker": "Konstantin Haase",
+      "info": ""
+    },
+    {
+      "time": 1379697300,
+      "speaker": "Nerdboat Bus Departure",
+      "info": ""
+    },
+    {
+      "time": 1379698200,
+      "speaker": "Break",
+      "info": ""
+    },
+    {
+      "time": 1379700000,
+      "speaker": "Paul Campbell",
+      "info": ""
+    },
+    {
+      "time": 1379702700,
+      "speaker": "Closing",
+      "info": ""
+    },
+    {
+      "time": 1379707200,
+      "speaker": "Reeperbahn Tour",
+      "info": ""
+    }
+  ]
+}
