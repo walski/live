@@ -71,6 +71,7 @@ App.Router.map(function() {
   this.resource('trips', function() {
     this.resource('trip', { path: ':trip_id' });
   });
+  this.resource('directions');
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -93,6 +94,8 @@ App.TripsRoute = Ember.Route.extend({
     return store.find('trip');
   }
 });
+
+App.DirectionsRoute = Ember.Route.extend({});
 
 // app specific
 
