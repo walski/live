@@ -34,7 +34,14 @@ class Bahn
   end
 
   def url
-    "#{URL}/?input=Hamburg+HBF&date=#{@date}&time=#{@time}&boardType=dep&GUIREQProduct_4=on&start=Suchen"
+    p u = "#{URL}/?input=Hamburg+HBF&date=#{@date}&time=#{@time}&boardType=dep&GUIREQProduct_3=on&GUIREQProduct_4=on&GUIREQProduct_7=on&start=Suchen"
+    u
   end
 
+  def self.all
+    instance = new
+    instance.scrape
+    instance.parse
+    instance.bergedorf
+  end
 end

@@ -1,6 +1,6 @@
 Live::Application.routes.draw do
-  resources :contacts
+  resources :trips
   resources :sessions
 
-  root 'contacts#index'
+  root 'home#index'
 end
