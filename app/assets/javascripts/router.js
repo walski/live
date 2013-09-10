@@ -1,8 +1,22 @@
-Live.Router.map(function() {});
- 
+Live.Router.map(function() {
+  this.resource('sessions', function() {
+    this.resource('session', { path: ':session_id' });
+  });
+});
+
+// Live.Router.reopen({
+//   location: 'history'
+// });
+
 Live.IndexRoute = Ember.Route.extend({
-  setupController: function(controller) {
+  redirect: function() {
+    this.transitionTo('sessions');
+  }
+});
+
+Live.SessionsRoute = Ember.Route.extend({
+  model: function() {
     var store = this.get('store');
-    controller.set('model', store.find('session'));
+    return store.find('session')
   }
 });
