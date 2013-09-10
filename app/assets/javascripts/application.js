@@ -24,10 +24,10 @@
 
 // start ember
 
-Live = Ember.Application.create({
+App = Ember.Application.create({
   ready: function() {
     setInterval( function() {
-      Live.set('currentTime', new Date(2013, 8, 19, 12));
+      App.set('currentTime', new Date(2013, 8, 19, 13, 30));
     }, 1000);
   }
 });
