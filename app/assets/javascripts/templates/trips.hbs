@@ -1,10 +1,8 @@
-{{outlet}}
-
 <div id="trips">
   <h2>All Trips:</h2>
   <ul>
-    {{#each trip in model}}
-      <li>at {{trip.time}} with {{trip.train}} on {{trip.platform}}</li>
+    {{#each}}
+      <li>at {{time}} with {{train}} on {{platform}}</li>
     {{/each}}
   </ul>
 </div>

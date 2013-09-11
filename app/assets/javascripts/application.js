@@ -43,7 +43,7 @@ App.Trip = DS.Model.extend({
 });
 
 App.IndexController = Ember.ObjectController.extend({
-  needs: ['sessions']
+  needs: ['sessions', 'trips']
 });
 
 App.TripsController = Ember.ArrayController.extend({});
@@ -78,6 +78,7 @@ App.IndexRoute = Ember.Route.extend({
   setupController: function(controller, model) {
     var store = this.get('store');
     this.controllerFor('sessions').set('model', store.find('session'));
+    this.controllerFor('trips').set('model', store.find('trip'));
   }
 });
 
