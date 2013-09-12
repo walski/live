@@ -24,9 +24,10 @@
 
 App = Ember.Application.create({
   ready: function() {
+    App.set('currentTime', new Date());
     setInterval(function() {
       App.set('currentTime', new Date(2013, 8, 19, 13, 30));
-    }, 1000);
+    }, 5000);
   }
 });
 
@@ -83,6 +84,7 @@ App.ApplicationRoute = Ember.Route.extend({
       var $scrollTo = $('body').scrollTop($elem.offset().top - 60);
 
       this.transitionTo(item.route).then($scrollTo);
+      $("#nav-main").collapse('hide');
     }
   },
   setupController: function() {
