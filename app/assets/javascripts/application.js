@@ -44,7 +44,7 @@ App.Trip = DS.Model.extend({
 });
 
 App.IndexController = Ember.ObjectController.extend({
-  needs: ['sessions', 'trips', 'trip', 'directions', 'contacts']
+  needs: ['sessions', 'trips', 'directions', 'contacts']
 });
 
 App.TripsController = Ember.ArrayController.extend({
@@ -85,26 +85,13 @@ App.ApplicationRoute = Ember.Route.extend({
 
       this.transitionTo(item.route).then($scrollTo);
     }
-  }
-});
-
-App.IndexRoute = Ember.Route.extend({
-  setupController: function(controller, model) {
+  },
+  setupController: function() {
     var store = this.get('store');
     this.controllerFor('sessions').set('model', store.find('session'));
     this.controllerFor('trips').set('model', store.find('trip'));
   }
 });
-
-App.SessionsRoute = Ember.Route.extend({
-  model: function() {
-    var store = this.get('store');
-    return store.find('session');
-  }
-});
-
-App.DirectionsRoute = Ember.Route.extend({});
-App.ContactsRoute = Ember.Route.extend({});
 
 Ember.Handlebars.helper('dateTime', function(value, options) {
   return moment(value).format('MMM D HH:mm');
@@ -112,12 +99,4 @@ Ember.Handlebars.helper('dateTime', function(value, options) {
 
 Ember.Handlebars.helper('time', function(value, options) {
   return moment(value).format('HH:mm');
-});
-
-// app specific
-
-$(document).ready(function() {
-  $('body').scrollspy({
-    target: '#navigation'
-  });
 });
