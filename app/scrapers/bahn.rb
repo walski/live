@@ -16,10 +16,11 @@ class Bahn
   end
 
   def departures
-    @doc.xpath("//tr[starts-with(@id, 'journeyRow')]").map do |row|
+    @doc.xpath("//tr[starts-with(@id, 'journeyRow')]").each_with_index.map do |row, i|
       begin
         hour, minute = row.search(".time").first.content.strip.split(':')
         {
+          id:       i,
           time:     @now.change(hour: hour, min: minute),
           train:    row.search(".train").last.content.strip.gsub(/\s+/, ' '),
           route:    row.search(".route").first.content.strip,
