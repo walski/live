@@ -1,10 +1,22 @@
-{{outlet}}
-
 <div id="sessions">
-  <h2>All Sessions:</h2>
-  <ul>
-    {{#each session in model}}
-      {{partial "sessionListItem"}}
-    {{/each}}
-  </ul>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">Current:</h2>
+    </div>
+    <div class="panel-body">
+      {{#if current}}
+        <h3>{{time current.time}}: {{current.speaker}}</h3>
+      {{/if}}
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">Coming up next:</h2>
+    </div>
+    <div class="panel-body">
+      {{#if nextUp}}
+        <h3>{{time nextUp.time}}: {{nextUp.speaker}}</h3>
+      {{/if}}
+    </div>
+  </div>
 </div>

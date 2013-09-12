@@ -1,4 +1,4 @@
-<div class="navbar navbar-default">
+<div class="navbar navbar-default navbar-fixed-top">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="icon-bar"></span>
@@ -9,11 +9,16 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-      <li>{{#link-to 'sessions'}}Sessions{{/link-to}}</li>
-      <li>{{#link-to 'trips'}}Trips{{/link-to}}</li>
-      <li>{{#link-to 'directions'}}Directions{{/link-to}}</li>
+      <li><a href="#/" {{action goToLink "sessions" "#sessions"}}>Sessions</a></li>
+      <li><a href="#/" {{action goToLink "trips" "#trips"}}>Trips</a></li>
+      <li><a href="#/" {{action goToLink "directions" "#directions"}}>Directions</a></li>
+      <li><a href="#/" {{action goToLink "contacts" "#contacts"}}>Contacts</a></li>
     </ul>
   </div>
+</div>
+
+<div class="logo">
+  <div class="stripes"></div>
 </div>
 
 {{outlet}}

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require moment
 //= require handlebars
 //= require ember
 //= require ember-data
@@ -23,7 +24,7 @@
 
 App = Ember.Application.create({
   ready: function() {
-    setInterval( function() {
+    setInterval(function() {
       App.set('currentTime', new Date(2013, 8, 19, 13, 30));
     }, 1000);
   }
@@ -43,10 +44,12 @@ App.Trip = DS.Model.extend({
 });
 
 App.IndexController = Ember.ObjectController.extend({
-  needs: ['sessions', 'trips']
+  needs: ['sessions', 'trips', 'directions', 'contacts']
 });
 
 App.TripsController = Ember.ArrayController.extend({});
+App.DirectionsController = Ember.ObjectController.extend({});
+App.ContactsController = Ember.ObjectController.extend({});
 
 App.SessionsController = Ember.ArrayController.extend({
   nextUp: function() {
@@ -66,12 +69,27 @@ App.SessionsController = Ember.ArrayController.extend({
 
 App.Router.map(function() {
   this.resource('sessions', function() {
-    this.resource('session', { path: ':session_id' });
+    this.resource('session', {
+      path: ':session_id'
+    });
   });
   this.resource('trips', function() {
-    this.resource('trip', { path: ':trip_id' });
+    this.resource('trip', {
+      path: ':trip_id'
+    });
   });
   this.resource('directions');
+});
+
+App.ApplicationRoute = Ember.Route.extend({
+  actions: {
+    goToLink: function(item, anchor) {
+      var $elem = $(anchor);
+      var $scrollTo = $('body').scrollTop($elem.offset().top - 60);
+
+      this.transitionTo(item.route).then($scrollTo);
+    }
+  }
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -97,9 +115,20 @@ App.TripsRoute = Ember.Route.extend({
 });
 
 App.DirectionsRoute = Ember.Route.extend({});
+App.ContactsRoute = Ember.Route.extend({});
+
+Ember.Handlebars.helper('dateTime', function(value, options) {
+  return moment(value).format('MMM D HH:mm')
+});
+
+Ember.Handlebars.helper('time', function(value, options) {
+  return moment(value).format('HH:mm')
+});
 
 // app specific
 
-$(document).ready(function () {
-  $('body').scrollspy({ target: '#navigation' });
+$(document).ready(function() {
+  $('body').scrollspy({
+    target: '#navigation'
+  });
 });

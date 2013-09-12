@@ -1,21 +1,9 @@
-Jetzt: {{App.currentTime}}
-
-{{#if controllers.sessions.current}}
-<div id="current">
-  <h2>Current:</h2>
-  <h3>
-    {{controllers.sessions.current.time}}: {{controllers.sessions.current.speaker}}
-  </h3>
+<div id="now" class="alert alert-info">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <em>It's now {{dateTime App.currentTime}}</em>
 </div>
-{{/if}}
 
-{{#if controllers.sessions.nextUp}}
-<div id="next-up">
-  <h2>Coming up next:</h2>
-  <h3>
-    {{controllers.sessions.nextUp.time}}: {{controllers.sessions.nextUp.speaker}}
-  </h3>
-</div>
-{{/if}}
-
-{{render 'trips' controllers.trips.model}}
+{{render 'sessions' controllers.sessions}}
+{{render 'trips' controllers.trips}}
+{{render 'directions' controllers.directions}}
+{{render 'contacts' controllers.contacts}}

@@ -2,8 +2,9 @@ class Bahn
   URL = 'http://reiseauskunft.bahn.de/bin/bhftafel.exe'
 
   def initialize
-    @date = Date.today.strftime('%d.%m.%y')
-    @time = Time.now.strftime('%H:%M')
+    @now  = Time.now
+    @date = @now.strftime('%d.%m.%y')
+    @time = @now.strftime('%H:%M')
   end
 
   def scrape
@@ -17,10 +18,11 @@ class Bahn
   def departures
     @doc.xpath("//tr[starts-with(@id, 'journeyRow')]").map do |row|
       begin
+        hour, minute = row.search(".time").first.content.strip.split(':')
         {
-          time: row.search(".time").first.content.strip,
-          train: row.search(".train").last.content.strip.gsub(/\s+/, ' '),
-          route: row.search(".route").first.content.strip,
+          time:     @now.change(hour: hour, min: minute),
+          train:    row.search(".train").last.content.strip.gsub(/\s+/, ' '),
+          route:    row.search(".route").first.content.strip,
           platform: row.search(".platform").first.content.strip,
         }
       rescue
@@ -34,8 +36,7 @@ class Bahn
   end
 
   def url
-    p u = "#{URL}/?input=Hamburg+HBF&date=#{@date}&time=#{@time}&boardType=dep&GUIREQProduct_3=on&GUIREQProduct_4=on&GUIREQProduct_7=on&start=Suchen"
-    u
+    "#{URL}/?input=Hamburg+HBF&date=#{@date}&time=#{@time}&boardType=dep&GUIREQProduct_3=on&GUIREQProduct_4=on&GUIREQProduct_7=on&start=Suchen"
   end
 
   def self.all

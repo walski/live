@@ -1,8 +1,30 @@
-<div id="trips">
-  <h2>All Trips:</h2>
-  <ul>
-    {{#each}}
-      <li>at {{time}} with {{train}} on {{platform}}</li>
-    {{/each}}
-  </ul>
+<div id="trips" class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title">Trips from Main Station:</h2>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tr>
+          <th>Train</th>
+          <th>Time</th>
+          <th>Platform</th>
+        </tr>
+        {{#each}}
+          <tr>
+            <td>
+              <span class="label label-primary">{{train}}</span>
+            </td>
+            <td>
+              <em>{{time time}}</em>
+              <span class="glyphicon glyphicon-time"></span>
+            </td>
+            <td>
+              {{platform}}
+            </td>
+          </tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
 </div>

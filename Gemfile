@@ -19,6 +19,7 @@ gem 'jquery-rails'
 gem 'ember-rails'
 gem 'ember-source'
 gem 'ember-data-source', '~> 1.0.0.beta.2'
+gem 'momentjs-rails'
 
 group :development do
   gem 'quiet_assets'
