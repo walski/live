@@ -47,7 +47,10 @@ App.IndexController = Ember.ObjectController.extend({
   needs: ['sessions', 'trips', 'trip', 'directions', 'contacts']
 });
 
-App.TripsController = Ember.ArrayController.extend({});
+App.TripsController = Ember.ArrayController.extend({
+  needs: ['trip']
+});
+
 App.TripController = Ember.ObjectController.extend({});
 App.DirectionsController = Ember.ArrayController.extend({});
 App.ContactsController = Ember.ArrayController.extend({});
@@ -70,9 +73,7 @@ App.SessionsController = Ember.ArrayController.extend({
 
 App.Router.map(function() {
   this.resource('index', {path: '/'}, function (){
-    this.resource('trips', function() {
-      this.resource('trip', {path: ':trip_id'});
-    });
+    this.resource('trip', {path: 'trips/:trip_id'});
   });
 });
 
@@ -99,13 +100,6 @@ App.SessionsRoute = Ember.Route.extend({
   model: function() {
     var store = this.get('store');
     return store.find('session');
-  }
-});
-
-App.TripsRoute = Ember.Route.extend({
-  model: function() {
-    var store = this.get('store');
-    return store.find('trip');
   }
 });
 
