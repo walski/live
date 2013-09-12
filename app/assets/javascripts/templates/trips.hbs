@@ -4,11 +4,6 @@
   </div>
   <div class="panel-body">
     <div class="table-responsive">
-      {{#if controllers.trip.model}}
-        {{render 'trip' controllers.trip.model}}
-      {{/if}}
-    </div>
-    <div class="table-responsive">
       <table class="table table-striped">
         <tr>
           <th>Train</th>
@@ -18,12 +13,10 @@
         {{#each}}
           <tr>
             <td>
-              <span class="label label-primary">{{train}}</span>
+              {{train}}
             </td>
             <td>
-              {{#link-to 'trip' id}}go{{/link-to}}
-              <em>{{time time}}</em>
-              <span class="glyphicon glyphicon-time"></span>
+              {{partial 'trip_info'}}
             </td>
             <td>
               {{platform}}

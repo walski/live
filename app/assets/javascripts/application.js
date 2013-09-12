@@ -40,18 +40,21 @@ App.Trip = DS.Model.extend({
   time: DS.attr('string'),
   train: DS.attr('string'),
   route: DS.attr('string'),
-  platform: DS.attr('string')
+  platform: DS.attr('string'),
+  modalId: function() {
+    return 'modal_trip_' + this.get('id');
+  }.property('id'),
+  modalAnchor: function() {
+    return '#modal_trip_' + this.get('id');
+  }.property('id')
 });
 
 App.IndexController = Ember.ObjectController.extend({
   needs: ['sessions', 'trips', 'directions', 'contacts']
 });
 
-App.TripsController = Ember.ArrayController.extend({
-  needs: ['trip']
-});
+App.TripsController = Ember.ArrayController.extend({});
 
-App.TripController = Ember.ObjectController.extend({});
 App.DirectionsController = Ember.ArrayController.extend({});
 App.ContactsController = Ember.ArrayController.extend({});
 
@@ -71,11 +74,7 @@ App.SessionsController = Ember.ArrayController.extend({
   currentTimeBinding: Ember.Binding.oneWay('App.currentTime')
 });
 
-App.Router.map(function() {
-  this.resource('index', {path: '/'}, function (){
-    this.resource('trip', {path: 'trips/:trip_id'});
-  });
-});
+App.Router.map(function() {});
 
 App.ApplicationRoute = Ember.Route.extend({
   actions: {
