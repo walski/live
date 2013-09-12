@@ -12,24 +12,15 @@
  *= require_tree .
  */
 
+// bootstrap customizations
 $font-family-sans-serif: American Typewriter;
 
 @import "twitter/bootstrap";
 
-// bootstrap customizations
 body {
   padding-top: 60px;
 
   .logo {
-    display: block;
-    width: 484px;
-    height: 285px;
-    background: asset-url('logo.png') no-repeat left top;
     margin-bottom: 20px;
-  }
-  .stripes {
-    height: 100%;
-    background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.5) 50%);
-    background-size: 5px 5px;
   }
 }
