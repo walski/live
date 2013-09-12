@@ -44,12 +44,13 @@ App.Trip = DS.Model.extend({
 });
 
 App.IndexController = Ember.ObjectController.extend({
-  needs: ['sessions', 'trips', 'directions', 'contacts']
+  needs: ['sessions', 'trips', 'trip', 'directions', 'contacts']
 });
 
 App.TripsController = Ember.ArrayController.extend({});
-App.DirectionsController = Ember.ObjectController.extend({});
-App.ContactsController = Ember.ObjectController.extend({});
+App.TripController = Ember.ObjectController.extend({});
+App.DirectionsController = Ember.ArrayController.extend({});
+App.ContactsController = Ember.ArrayController.extend({});
 
 App.SessionsController = Ember.ArrayController.extend({
   nextUp: function() {
@@ -68,8 +69,10 @@ App.SessionsController = Ember.ArrayController.extend({
 });
 
 App.Router.map(function() {
-  this.resource('index', {path: '/'}, function() {
-    this.resource('trip', {path: 'trips/:trip_id'});
+  this.resource('index', {path: '/'}, function (){
+    this.resource('trips', function() {
+      this.resource('trip', {path: ':trip_id'});
+    });
   });
 });
 
@@ -106,21 +109,15 @@ App.TripsRoute = Ember.Route.extend({
   }
 });
 
-App.TripRoute = Ember.Route.extend({
-  model: function(params) {
-    return trips[params.trip_id];
-  }
-});
-
 App.DirectionsRoute = Ember.Route.extend({});
 App.ContactsRoute = Ember.Route.extend({});
 
 Ember.Handlebars.helper('dateTime', function(value, options) {
-  return moment(value).format('MMM D HH:mm')
+  return moment(value).format('MMM D HH:mm');
 });
 
 Ember.Handlebars.helper('time', function(value, options) {
-  return moment(value).format('HH:mm')
+  return moment(value).format('HH:mm');
 });
 
 // app specific
