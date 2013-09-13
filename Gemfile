@@ -7,6 +7,7 @@ gem 'thin'
 gem 'rails', '4.0.0'
 gem 'curb'
 gem 'nokogiri'
+gem 'rack-cache'
 gem 'dalli'
 
 gem 'sass-rails', '~> 4.0.0'
