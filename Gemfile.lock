@@ -39,6 +39,7 @@ GEM
     builder (3.1.4)
     curb (0.8.4)
     daemons (1.1.9)
+    dalli (2.6.4)
     dotenv (0.9.0)
     ember-data-source (1.0.0.beta.2)
       ember-source
@@ -130,14 +131,15 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails (>= 3.0.0.0)
-  curb (= 0.8.4)
+  curb
+  dalli
   ember-data-source (~> 1.0.0.beta.2)
   ember-rails
   ember-source
   foreman
   jquery-rails
   momentjs-rails
-  nokogiri (= 1.6.0)
+  nokogiri
   quiet_assets
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
