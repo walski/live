@@ -6,6 +6,6 @@ class TripsController < ApplicationController
   protected
 
   def trips
-    cache(expires_in: 5.minutes) { Bahn.all }
+    cache(:trips, expires_in: 5.minutes) { Bahn.all }
   end
 end
