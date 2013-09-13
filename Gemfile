@@ -5,8 +5,9 @@ gem 'thin'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-gem 'curb', '0.8.4'
-gem 'nokogiri', '1.6.0'
+gem 'curb'
+gem 'nokogiri'
+gem 'dalli'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
