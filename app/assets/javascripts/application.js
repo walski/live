@@ -26,8 +26,8 @@ App = Ember.Application.create({
   ready: function() {
     App.set('currentTime', new Date());
     setInterval(function() {
-      App.set('currentTime', new Date(2013, 8, 19, 13, 30));
-    }, 5000);
+      App.set('currentTime', new Date(2013, 8, 19, 20, 10));
+    }, 1000);
   }
 });
 
@@ -60,9 +60,24 @@ App.DirectionsController = Ember.ArrayController.extend({});
 App.ContactsController = Ember.ArrayController.extend({});
 
 App.SessionsController = Ember.ArrayController.extend({
+  afterThat: function() {
+    var found = false;
+    return this.find(function(session) {
+      if (session.get('time') > App.currentTime) {
+        if (found) {
+          return true;
+        } else {
+          found = true;
+          return false;
+        }
+      }
+      return false;
+    });
+  }.property('@each', 'currentTime'),
+
   nextUp: function() {
     return this.find(function(session) {
-      return session.get('time') >= App.currentTime;
+      return session.get('time') > App.currentTime;
     });
   }.property('@each', 'currentTime'),
 
@@ -100,4 +115,8 @@ Ember.Handlebars.helper('dateTime', function(value, options) {
 
 Ember.Handlebars.helper('time', function(value, options) {
   return moment(value).format('HH:mm');
+});
+
+Ember.Handlebars.helper('timeDay', function(value, options) {
+  return moment(value).format('dd. HH:mm');
 });

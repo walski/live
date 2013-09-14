@@ -1,22 +1,32 @@
 <div id="sessions">
+  {{#if current}}
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2 class="panel-title">Current</h2>
+      <h2 class="panel-title">Live</h2>
     </div>
     <div class="panel-body">
-      {{#if current}}
-        <h3>{{time current.time}}: {{current.speaker}}</h3>
-      {{/if}}
+      <h3>{{timeDay current.time}}: {{current.speaker}}</h3>
     </div>
   </div>
+  {{/if}}
+  {{#if nextUp}}
   <div class="panel panel-default">
     <div class="panel-heading">
       <h2 class="panel-title">Coming up next</h2>
     </div>
     <div class="panel-body">
-      {{#if nextUp}}
-        <h3>{{time nextUp.time}}: {{nextUp.speaker}}</h3>
-      {{/if}}
+      <h3>{{timeDay nextUp.time}}: {{nextUp.speaker}}</h3>
     </div>
   </div>
+  {{/if}}
+  {{#if afterThat}}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">after that</h2>
+    </div>
+    <div class="panel-body">
+      <h3>{{timeDay afterThat.time}}: {{afterThat.speaker}}</h3>
+    </div>
+  </div>
+  {{/if}}
 </div>
