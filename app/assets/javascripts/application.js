@@ -25,9 +25,7 @@
 App = Ember.Application.create({
   ready: function() {
     App.set('currentTime', new Date());
-    setInterval(function() {
-      App.set('currentTime', new Date(2013, 8, 19, 20, 10));
-    }, 1000);
+    setInterval(function() { App.set('currentTime', new Date()); }, 1000);
   }
 });
 
@@ -38,7 +36,7 @@ App.Session = DS.Model.extend({
 });
 
 App.Trip = DS.Model.extend({
-  time: DS.attr('string'),
+  time: DS.attr('date'),
   train: DS.attr('string'),
   route: DS.attr('string'),
   platform: DS.attr('string'),
@@ -47,7 +45,10 @@ App.Trip = DS.Model.extend({
   }.property('id'),
   modalAnchor: function() {
     return '#modal_trip_' + this.get('id');
-  }.property('id')
+  }.property('id'),
+  isHighlighted: function() {
+    return App.currentTime < this.get('time') && moment(App.currentTime).add('minutes', 10).toDate() > this.get('time');
+  }.property('App.currentTime', 'time')
 });
 
 App.IndexController = Ember.ObjectController.extend({
