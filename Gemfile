@@ -9,6 +9,7 @@ gem 'curb'
 gem 'nokogiri'
 gem 'rack-cache'
 gem 'dalli'
+gem 'newrelic_rpm'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
