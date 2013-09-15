@@ -104,9 +104,8 @@ App.ApplicationRoute = Ember.Route.extend({
   actions: {
     goToLink: function(item, anchor) {
       var $elem = $(anchor);
-      var $scrollTo = $('body').scrollTop($elem.offset().top - 60);
-
-      this.transitionTo(item.route).then($scrollTo);
+      var top = $elem.offset().top - 60;
+      $("html, body").animate({scrollTop: top}, 1000);
       $("#nav-main").collapse('hide');
     }
   },
