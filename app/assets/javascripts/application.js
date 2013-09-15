@@ -55,7 +55,14 @@ App.IndexController = Ember.ObjectController.extend({
   needs: ['sessions', 'trips', 'directions', 'contacts']
 });
 
-App.TripsController = Ember.ArrayController.extend({});
+App.TripsController = Ember.ArrayController.extend({
+  actions: {
+    update: function() {
+      var store = this.get('store');
+      this.set('model', store.find('trip'));
+    }
+  }
+});
 
 App.DirectionsController = Ember.ArrayController.extend({});
 App.ContactsController = Ember.ArrayController.extend({});
