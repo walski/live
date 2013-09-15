@@ -25,7 +25,7 @@
 App = Ember.Application.create({
   ready: function() {
     App.set('currentTime', new Date());
-    App.set('env', '<%= Rails.env %>');
+    App.set('development', <%= Rails.env.development? ? 'true' : 'false' %>);
     setInterval(function() { App.set('currentTime', new Date()); }, 1000);
   }
 });
@@ -47,11 +47,7 @@ App.Trip = DS.Model.extend({
 });
 
 App.IndexController = Ember.ObjectController.extend({
-  needs: ['sessions', 'trips', 'directions', 'contacts'],
-
-  isDevelopment: function() {
-    return App.env === 'development';
-  }
+  needs: ['sessions', 'trips', 'directions', 'contacts']
 });
 
 App.TripsController = Ember.ArrayController.extend({
