@@ -26,7 +26,7 @@ App = Ember.Application.create({
   ready: function() {
     App.set('currentTime', new Date());
     App.set('development', <%= Rails.env.development? ? 'true' : 'false' %>);
-    setInterval(function() { App.set('currentTime', new Date()); }, 1000);
+    setInterval(function() { App.set('currentTime', new Date(<%= Rails.env.development? ? '2013, 8, 19, 17' : '' %>)); }, 1000);
   }
 });
 
