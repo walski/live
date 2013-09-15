@@ -19,7 +19,7 @@ class Schedule
     @doc["slots"].map do |entry|
       timestamp     = entry["time"]
       entry["id"]   = timestamp
-      entry["time"] = Time.at timestamp
+      entry["time"] = Time.at(timestamp - Time.zone_offset('CEST')).in_time_zone('CET')
       entry
     end
   end
