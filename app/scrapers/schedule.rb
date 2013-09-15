@@ -19,7 +19,10 @@ class Schedule
     @doc["slots"].map do |entry|
       timestamp     = entry["time"]
       entry["id"]   = timestamp
-      entry["time"] = Time.at(timestamp - Time.zone_offset('CEST')).in_time_zone('CET')
+      # FIXME (ps) two possible solutions here
+      # 1. timestamp is broken
+      # 2. i am to stupid to work with timezones
+      entry["time"] = Time.at(timestamp - 7200)
       entry
     end
   end
