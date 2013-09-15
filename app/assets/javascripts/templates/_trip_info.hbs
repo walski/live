@@ -1,9 +1,9 @@
-<a data-toggle="modal" {{bind-attr href=modalAnchor}} class="btn btn-sm" {{bind-attr class="isHighlighted:btn-primary:btn-default"}}>
+<a data-toggle="modal" href="#modal_trip_{{unbound id}}" class="btn btn-sm" {{bind-attr class="isHighlighted:btn-primary:btn-default"}}>
   <span class="glyphicon glyphicon-time"></span>
   <em>{{time time}}</em>
 </a>
 
-<div class="modal fade" {{bind-attr id=modalId}} tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_trip_{{unbound id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

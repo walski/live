@@ -41,12 +41,6 @@ App.Trip = DS.Model.extend({
   train: DS.attr('string'),
   route: DS.attr('string'),
   platform: DS.attr('string'),
-  modalId: function() {
-    return 'modal_trip_' + this.get('id');
-  }.property('id'),
-  modalAnchor: function() {
-    return '#modal_trip_' + this.get('id');
-  }.property('id'),
   isHighlighted: function() {
     return App.currentTime < this.get('time') && moment(App.currentTime).add('minutes', 10).toDate() > this.get('time');
   }.property('App.currentTime', 'time')
