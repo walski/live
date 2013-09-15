@@ -26,7 +26,7 @@ App = Ember.Application.create({
   ready: function() {
     App.set('currentTime', new Date());
     App.set('development', <%= Rails.env.development? ? 'true' : 'false' %>);
-    setInterval(function() { App.set('currentTime', new Date(<%= Rails.env.development? ? '2013, 8, 19, 17' : '' %>)); }, 1000);
+    setInterval(function() { App.set('currentTime', new Date(<%= Rails.env.development? ? '2013, 8, 19, 08' : '' %>)); }, 1000);
   }
 });
 
@@ -55,6 +55,17 @@ App.TripsController = Ember.ArrayController.extend({
     update: function() {
       var store = this.get('store');
       this.set('model', store.find('trip'));
+    },
+    pop: function(id, train) {
+      var options = {};
+      if (train.match(/RE/)) {
+        options.content = "Our recommendation to get to So Coded on Thursday is a regional train running from “Central Station” to “Bergedorf” in just 10 minutes. Take the “RE 4307” from “Central Station” towards “Rostock” at 8:35am and get off at the first stop which is “Bergedorf”.";
+      } else {
+        options.content = "The easiest way! Take a S21 or S2 at “Central Station” towards “Bergedorf”. Get off at the “Bergedorf” station. This is a 20 minute ride. The train runs every 10 minutes from “Central Station” on Platform 4.";
+      }
+      var element = $('[data-toggle="popover_' + id + '"]');
+      element.popover(options).popover('show');
+      setTimeout(function () { element.popover('hide'); }, 2000);
     }
   }
 });
