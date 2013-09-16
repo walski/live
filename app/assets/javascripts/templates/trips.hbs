@@ -17,17 +17,19 @@
           <th>Platform</th>
         </tr>
         {{#each}}
-          <tr>
-            <td>
-              {{view App.TrainInfoView}}
-            </td>
-            <td>
-              {{view App.TripInfoView}}
-            </td>
-            <td>
-              {{platform}}
-            </td>
-          </tr>
+          <tr {{bind-attr class="isHighlighted:success"}}>
+            {{#unless isGone}}
+              <td>
+                {{view App.TrainInfoView}}
+              </td>
+              <td>
+                {{view App.TripInfoView}}
+              </td>
+              <td>
+                {{platform}}
+              </td>
+            </tr>
+          {{/unless}}
         {{else}}
           <tr>
             <td colspan="3">

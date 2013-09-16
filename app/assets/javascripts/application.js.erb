@@ -26,7 +26,8 @@ App = Ember.Application.create({
   ready: function() {
     App.set('currentTime', new Date());
     App.set('development', <%= Rails.env.development? ? 'true' : 'false' %>);
-    setInterval(function() { App.set('currentTime', new Date(<%= Rails.env.development? ? '2013, 8, 19, 08' : '' %>)); }, 1000);
+    setInterval(function() { App.set('currentTime', new Date()); }, 1000);
+    // setInterval(function() { App.set('currentTime', new Date(2013, 8, 16, 19, 15)); }, 1000);
   }
 });
 
@@ -41,6 +42,9 @@ App.Trip = DS.Model.extend({
   train: DS.attr('string'),
   route: DS.attr('string'),
   platform: DS.attr('string'),
+  isGone: function() {
+    return App.currentTime > this.get('time');
+  }.property('App.currentTime', 'time'),
   isHighlighted: function() {
     return App.currentTime < this.get('time') && moment(App.currentTime).add('minutes', 10).toDate() > this.get('time');
   }.property('App.currentTime', 'time'),
