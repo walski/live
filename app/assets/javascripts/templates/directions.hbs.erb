@@ -1,20 +1,75 @@
 <div id="directions" class="panel panel-default">
   <div class="panel-heading">
-    <h2 class="panel-title">Directions from Trainstation</h2>
+    <h2 class="panel-title">Directions</h2>
   </div>
   <div class="panel-body">
-    <img src="<%= asset_path('directions.png') %>" class="img-rounded img-responsive"/>
-    <br/>
-    <ul class="list-group">
-      <li class="list-group-item"><strong>LOLA Kulturzentrum e.V.</strong></li>
-      <li class="list-group-item">Lohbrügger Landstraße 8</li>
-      <li class="list-group-item">21031 Hamburg</li>
-      <li class="list-group-item">
-        <a href="http://maps.apple.com/?q=Lohbrügger%20Landstraße%208%2021031%20Hamburg" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-map-marker"></span>
-          open in Maps
-        </a>
-      </li>
-    </ul>
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+              Address
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item"><strong>LOLA Kulturzentrum e.V.</strong></li>
+              <li class="list-group-item">Lohbrügger Landstraße 8</li>
+              <li class="list-group-item">21031 Hamburg</li>
+              <li class="list-group-item">
+                <a href="http://maps.apple.com/?q=Lohbrügger%20Landstraße%208%2021031%20Hamburg" class="btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon-map-marker"></span>
+                  open in Maps
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+              To LOLA
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+          <div class="panel-body">
+            <img src="<%= asset_path('directions.png') %>" class="img-rounded img-responsive"/>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+              1st Floor
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-body">
+            <img src="<%= asset_path('1st_floor.png') %>" class="img-rounded img-responsive"/>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+              2nd Floor
+            </a>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+          <div class="panel-body">
+            <img src="<%= asset_path('2nd_floor.png') %>" class="img-rounded img-responsive"/>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
