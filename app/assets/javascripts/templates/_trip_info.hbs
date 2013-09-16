@@ -1,26 +1,4 @@
-<a data-toggle="modal" href="#modal_trip_{{unbound id}}" class="btn btn-sm" {{bind-attr class="isHighlighted:btn-primary:btn-default"}}>
+<a href="#" class="btn btn-sm btn-default" data-toggle="popover" data-title="{{unbound train}}" data-content="{{unbound route}}">
   <span class="glyphicon glyphicon-time"></span>
   <em>{{time time}}</em>
 </a>
-
-<div class="modal fade" id="modal_trip_{{unbound id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">
-          <strong>{{train}}</strong>
-          {{time time}}, {{platform}}
-        </h4>
-      </div>
-      <div class="modal-body">
-        <p>
-          {{route}}
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
