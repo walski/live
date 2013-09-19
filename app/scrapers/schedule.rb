@@ -22,7 +22,7 @@ class Schedule
       # FIXME (ps) two possible solutions here
       # 1. timestamp is broken
       # 2. i am to stupid to work with timezones
-      entry["time"] = Time.at(timestamp - 7200)
+      entry["time"] = Time.at(timestamp)
       entry
     end
   end
