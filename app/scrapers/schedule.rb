@@ -8,8 +8,8 @@ class Schedule
   end
 
   def fetch
-    # @data = Curl.get(URL).body_str
-    @data = File.open(Rails.root.join("config/schedule.json"), 'r') { |f| f.read }
+    @data = Curl.get(URL).body_str
+    # @data = File.open(Rails.root.join("config/schedule.json"), 'r') { |f| f.read }
   end
 
   def parse
