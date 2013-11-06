@@ -37,37 +37,8 @@ App.Session = DS.Model.extend({
   info: DS.attr('string')
 });
 
-App.Trip = DS.Model.extend({
-  time: DS.attr('date'),
-  train: DS.attr('string'),
-  route: DS.attr('string'),
-  platform: DS.attr('string'),
-  isGone: function() {
-    return App.currentTime > this.get('time');
-  }.property('App.currentTime', 'time'),
-  isHighlighted: function() {
-    return App.currentTime < this.get('time') && moment(App.currentTime).add('minutes', 10).toDate() > this.get('time');
-  }.property('App.currentTime', 'time'),
-  info: function() {
-    if (this.get('train').match(/RE/)) {
-      return "Our recommendation to get to So Coded on Thursday is a regional train running from “Central Station” to “Bergedorf” in just 10 minutes. Take the “RE 4307” from “Central Station” towards “Rostock” at 8:35am and get off at the first stop which is “Bergedorf”.";
-    } else {
-      return "The easiest way! Take a S21 or S2 at “Central Station” towards “Bergedorf”. Get off at the “Bergedorf” station. This is a 20 minute ride. The train runs every 10 minutes from “Central Station” on Platform 4.";
-    }
-  }.property('train')
-});
-
 App.IndexController = Ember.ObjectController.extend({
-  needs: ['sessions', 'trips', 'directions', 'contacts']
-});
-
-App.TripsController = Ember.ArrayController.extend({
-  actions: {
-    update: function() {
-      var store = this.get('store');
-      this.set('model', store.find('trip'));
-    }
-  }
+  needs: ['sessions', 'directions', 'contacts']
 });
 
 App.DirectionsController = Ember.ArrayController.extend({});
@@ -118,21 +89,11 @@ App.ApplicationRoute = Ember.Route.extend({
   setupController: function() {
     var store = this.get('store');
     this.controllerFor('sessions').set('model', store.find('session'));
-    this.controllerFor('trips').set('model', store.find('trip'));
   }
 });
 
 App.TrainInfoView = Ember.View.extend({
   templateName: '_train_info',
-  didInsertElement: function() {
-    $('[data-toggle="popover"]').popover().click(function(e) {
-      e.preventDefault();
-    });
-  }
-});
-
-App.TripInfoView = Ember.View.extend({
-  templateName: '_trip_info',
   didInsertElement: function() {
     $('[data-toggle="popover"]').popover().click(function(e) {
       e.preventDefault();
