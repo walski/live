@@ -1,5 +1,8 @@
+require 'csv'
+require 'open-uri'
+
 class Schedule
-  URL = 'http://socoded.com/schedule.json'
+  URL = 'https://docs.google.com/spreadsheet/pub?key=0Au_LuhlBQUkEdHRSc3Y2Q3h1SEstVXlGVmw2RG80U0E&single=true&gid=0&range=A6%3AC99&output=csv'
 
   def initialize
     @now  = Time.now
@@ -8,24 +11,38 @@ class Schedule
   end
 
   def fetch
-    @data = Curl.get(URL).body_str
+    @data = open(URL).read.to_s.force_encoding('utf-8')
     # @data = File.open(Rails.root.join("config/schedule.json"), 'r') { |f| f.read }
   end
 
   def parse
-    @doc = JSON.parse(@data)
+    @doc = CSV.parse(@data)
   end
 
   def sessions
-    @doc["slots"].map do |entry|
-      timestamp     = entry["time"]
-      entry["id"]   = timestamp
-      # FIXME (ps) two possible solutions here
-      # 1. timestamp is broken
-      # 2. i am to stupid to work with timezones
-      entry["time"] = Time.at(timestamp)
-      entry
+    day_of_event = Time.new(2013,11,22).at_midnight
+
+    last_topic, last_speaker = []
+
+    sessions = @doc.map do |line|
+      time, topic, speaker = line
+      hours, minutes = time.split(':').map(&:to_i)
+      time = day_of_event + hours.hours + minutes.minutes
+
+      if topic && !topic.blank? && speaker && !speaker.blank?
+        {'info' => topic, 'speaker' => speaker, 'time' => time}
+      else
+        nil
+      end
+    end.compact
+
+    sessions.each_with_index do |session, i|
+      next_session = sessions[i+1] || {}
+
+      session['end'] = next_session['time'] || session['time']
     end
+
+    sessions
   end
 
   def self.all

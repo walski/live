@@ -1,32 +1,34 @@
 <div id="sessions">
-  {{#if current}}
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h2 class="panel-title">Live</h2>
+      <h4 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSessions">
+          Schedule
+        </a>
+      </h4>
     </div>
-    <div class="panel-body">
-      <h3>{{timeDay current.time}}: {{current.speaker}}</h3>
+    <div id="collapseSessions" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Talk</th>
+              <th>Speaker</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each}}
+              {{checkForCurrentSession App.currentTime}}
+              <tr {{bind-attr class="currentSession:success"}}>
+                <td>{{time time}}</td>
+                <td>{{info}}</td>
+                <td>{{speaker}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  {{/if}}
-  {{#if nextUp}}
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h2 class="panel-title">Coming up next</h2>
-    </div>
-    <div class="panel-body">
-      <h3>{{timeDay nextUp.time}}: {{nextUp.speaker}}</h3>
-    </div>
-  </div>
-  {{/if}}
-  {{#if afterThat}}
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h2 class="panel-title">after that</h2>
-    </div>
-    <div class="panel-body">
-      <h3>{{timeDay afterThat.time}}: {{afterThat.speaker}}</h3>
-    </div>
-  </div>
-  {{/if}}
 </div>
