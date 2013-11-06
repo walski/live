@@ -19,6 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'json'
 gem 'ember-rails'
 gem 'ember-source'
 gem 'ember-data-source', '~> 1.0.0.beta.2'
