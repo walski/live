@@ -15,7 +15,7 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: 'e5fcfa107908bc2aeb4e5ed49c345dc937453113'
+  license_key: 'b17f7122cfc9135811d485530ecc50c2030b0312'
 
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
@@ -42,7 +42,7 @@ common: &default_settings
   #       - Ajax Service
   #       - All Services
   #
-  app_name: "live.socoded"
+  app_name: "live.x-sessions"
 
   # When "true", the agent collects performance data about your
   # application and reports this data to the New Relic service at
