@@ -13,14 +13,45 @@
  */
 
 // bootstrap customizations
-$font-family-sans-serif: American Typewriter;
+$font-family-sans-serif: Arial;
 
 @import "twitter/bootstrap";
 
+$font-color: #ddd;
+$background-color: #000;
+
 body {
+  background: $background-color;
   padding-top: 60px;
+  color: $font-color;
 
   .logo {
     margin-bottom: 20px;
+  }
+
+  .navbar-default {
+    background: $background-color;
+    color: $font-color;
+
+    .nav-main {
+      height: 62px;
+    }
+
+    .navbar-header a {
+      color: $font-color;
+      line-height: 31px;
+    }
+
+    .navbar-nav > li {
+      padding-top: 5px;
+
+      a {
+        color: $font-color;
+        &:hover {
+          color: $font-color;
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
