@@ -1,0 +1,31 @@
+<div class="buddy-requests">
+  <a href="/" class="btn btn-info">
+    <span class="glyphicon glyphicon-arrow-left"></span>
+    Back
+  </a>
+
+  <h2>Buddy Requests</h2>
+
+  <p>
+    These people asked you to become their X&nbsp;-&nbsp;Sessions buddy:
+  </p>
+
+  <div>
+    <% current_user.buddy_requests.each do |buddy| %>
+      <div class="buddy-request">
+        <%= link_to buddy.sender.profile_url, target: 'blank', class: "btn btn-default btn-lg buddy-info" do %>
+          <%= image_tag buddy.sender.small_photo_url %>
+          <%=  buddy.sender.name %>
+        <% end %>
+
+        <%= link_to "/buddies/#{buddy.id}/accept", method: :put, class: "btn btn-lg btn-success", title: "Accept" do %>
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+        <% end %>
+
+        <%= link_to "/buddies/#{buddy.id}", method: :delete, confirm: "Dismiss #{buddy.sender.name}'s request?", class: "btn btn-lg btn-danger", title: "Deny" do %>
+          <span class="glyphicon glyphicon-thumbs-down"></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

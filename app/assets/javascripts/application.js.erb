@@ -20,73 +20,86 @@
 //= require_tree ./templates
 //= require twitter/bootstrap
 
-// start ember
-
-App = Ember.Application.create({
-  ready: function() {
-    App.set('currentTime', new Date());
-    App.set('development', <%= Rails.env.development? ? 'true' : 'false' %>);
-    setInterval(function() { App.set('currentTime', new Date()); }, 10000);
-    // setInterval(function() { App.set('currentTime', new Date(2013, 10, 22, 8, 15)); }, 1000);
-  }
-});
-
-App.Session = DS.Model.extend({
-  time: DS.attr('date'),
-  end: DS.attr('date'),
-  speaker: DS.attr('string'),
-  info: DS.attr('string')
-});
-
-App.IndexController = Ember.ObjectController.extend({
-  needs: ['sessions', 'directions', 'contacts']
-});
-
-App.DirectionsController = Ember.ArrayController.extend({});
-App.ContactsController = Ember.ArrayController.extend({});
-
-App.SessionsController = Ember.ArrayController.extend({
-  current: function() {
-    return this.filter(function(session) {
-      return session.get('time') <= App.currentTime;
-    }).get('lastObject');
-  }.property('@each', 'currentTime'),
-
-  currentTimeBinding: Ember.Binding.oneWay('App.currentTime')
-});
-
-App.Router.map(function() {});
-
-App.ApplicationRoute = Ember.Route.extend({
-  actions: {
-    goToLink: function(anchor) {
-      var $elem = $('#' + anchor);
-      var top = $elem.offset().top - 60;
-      $("html, body").animate({scrollTop: top}, 1000);
-      $("#nav-main").collapse('hide');
+window.startEmber = function() {
+  // start ember
+  App = Ember.Application.create({
+    ready: function() {
+      App.set('currentTime', new Date());
+      App.set('development', <%= Rails.env.development? ? 'true' : 'false' %>);
+      setInterval(function() { App.set('currentTime', new Date()); }, 10000);
+      // setInterval(function() { App.set('currentTime', new Date(2013, 10, 22, 8, 15)); }, 1000);
     }
-  },
-  setupController: function() {
-    var store = this.get('store');
-    this.controllerFor('sessions').set('model', store.find('session'));
-  }
-});
+  });
 
-Ember.Handlebars.helper('dateTime', function(value, options) {
-  return moment(value).format('MMM D HH:mm');
-});
+  App.Session = DS.Model.extend({
+    time: DS.attr('date'),
+    end: DS.attr('date'),
+    speaker: DS.attr('string'),
+    info: DS.attr('string')
+  });
 
-Ember.Handlebars.helper('time', function(value, options) {
-  return moment(value).format('HH:mm');
-});
+  App.IndexController = Ember.ObjectController.extend({
+    needs: ['sessions', 'directions', 'contacts']
+  });
 
-Ember.Handlebars.helper('timeDay', function(value, options) {
-  return moment(value).format('dd. HH:mm');
-});
+  App.DirectionsController = Ember.ArrayController.extend({});
+  App.ContactsController = Ember.ArrayController.extend({});
 
-Ember.Handlebars.registerBoundHelper('checkForCurrentSession', function(value, options) {
-  var start = this.get('time').getTime();
-  var end = this.get('end').getTime();
-  var currentTime = value.getTime();
-  this.set('currentSession', currentTime >= start && currentTime < end)
-});
+  App.SessionsController = Ember.ArrayController.extend({
+    current: function() {
+      return this.filter(function(session) {
+        return session.get('time') <= App.currentTime;
+      }).get('lastObject');
+    }.property('@each', 'currentTime'),
+
+    currentTimeBinding: Ember.Binding.oneWay('App.currentTime')
+  });
+
+  App.Router.map(function() {});
+
+  App.Router.reopen({
+    location: 'none'
+  });
+
+  var goToLink = function(anchor) {
+    var $elem = $('#' + anchor);
+    var top = $elem.offset().top - 60;
+    $("html, body").animate({scrollTop: top}, 1000);
+    $("#nav-main").collapse('hide');
+  };
+
+  App.ApplicationRoute = Ember.Route.extend({
+    actions: {
+      goToLink: goToLink
+    },
+    setupController: function() {
+      var store = this.get('store');
+      this.controllerFor('sessions').set('model', store.find('session'));
+
+      if (window.location.hash && window.location.hash !== '#' && window.location.hash !== '') {
+        setTimeout(function() {
+          goToLink(window.location.hash.replace(/^#/, ''));
+        }, 1000);
+      }
+    }
+  });
+
+  Ember.Handlebars.helper('dateTime', function(value, options) {
+    return moment(value).format('MMM D HH:mm');
+  });
+
+  Ember.Handlebars.helper('time', function(value, options) {
+    return moment(value).format('HH:mm');
+  });
+
+  Ember.Handlebars.helper('timeDay', function(value, options) {
+    return moment(value).format('dd. HH:mm');
+  });
+
+  Ember.Handlebars.registerBoundHelper('checkForCurrentSession', function(value, options) {
+    var start = this.get('time').getTime();
+    var end = this.get('end').getTime();
+    var currentTime = value.getTime();
+    this.set('currentSession', currentTime >= start && currentTime < end)
+  });
+}

@@ -1,0 +1,42 @@
+<script>
+  startEmber();
+</script>
+
+<div class="xing-container">
+  <div class="xing">
+    <% if current_user %>
+      <div class="buddies">
+        <%= form_tag('/buddy', role: 'form', class: 'form-inline') do -%>
+            <div class="col-xs-7">
+              <%= text_field_tag 'buddy-code', nil, class: 'buddy-code form-control input-lg', pattern: "[0-9]{1,3}", maxlength: "3", placeholder: "Badge no.", required: 'required' %>
+            </div>
+            <button class="add-buddy btn btn-default btn-lg">
+              <span class="glyphicon glyphicon-plus-sign"></span> Add buddy
+            </button>
+          <% end -%>
+      </div>
+
+      <div class="existing-buddies">
+        <% unless current_user.buddies.empty? %>
+          <a class="existing btn btn-info btn-lg" href="/buddies">
+            <span class="glyphicon glyphicon-user"></span> <%= pluralize current_user.buddies.length, 'Buddy', 'Buddies' %>
+          </a>
+        <% end %>
+
+        <% unless current_user.buddy_requests.empty? %>
+          <a href="/buddies/requests" class="requests btn btn-info btn-lg">
+            <span class="glyphicon glyphicon-check"></span> <%= pluralize current_user.buddy_requests.length, 'Request', 'Requests' %>
+          </a>
+        <% end %>
+      </div>
+
+      <div class="logout">
+        <%= link_to 'Log out', '/signout', class: 'btn btn-default btn-lg' %>
+      </div>
+    <% else %>
+      <%= link_to '/auth/xing', class: 'login' do %>
+        Login with XING
+      <% end %>
+    <% end %>
+  </div>
+</div>

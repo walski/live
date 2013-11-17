@@ -25,6 +25,14 @@ gem 'ember-source'
 gem 'ember-data-source', '~> 1.0.0.beta.2'
 gem 'momentjs-rails'
 
+gem 'omniauth'
+gem 'omniauth-xing'
+gem 'protected_attributes'
+
+gem 'pg'
+gem 'xing', git: 'git@github.com:walski/xing.git', branch: 'add-contact-request-support'
+
 group :development do
   gem 'quiet_assets'
+  gem 'sqlite3'
 end
