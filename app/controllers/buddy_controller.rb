@@ -1,7 +1,7 @@
 class BuddyController < ApplicationController
-  def add_buddy
-    raise "Must be logged in" unless current_user
+  before_filter :only_logged_in!
 
+  def add_buddy
     buddy_code = params[:"buddy-code"]
     raise "Must specify buddy id" unless buddy_code
     buddy = Participant.where(:qr_code => buddy_code).first
@@ -70,5 +70,11 @@ class BuddyController < ApplicationController
     buddy.save!
 
     redirect_to '/buddies', notice: "#{buddy.sender.name} rejected"
+  end
+
+  protected
+
+  def only_logged_in!
+    redirect '/', notice: "Must be logged in"
   end
 end
