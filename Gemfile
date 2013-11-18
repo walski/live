@@ -29,8 +29,12 @@ gem 'omniauth'
 gem 'omniauth-xing'
 gem 'protected_attributes'
 
-gem 'pg'
 gem 'xing', git: 'https://github.com/walski/xing.git', branch: 'add-contact-request-support'
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
 
 group :development do
   gem 'quiet_assets'
