@@ -30,7 +30,7 @@ gem 'omniauth-xing'
 gem 'protected_attributes'
 
 gem 'pg'
-gem 'xing', git: 'git@github.com:walski/xing.git', branch: 'add-contact-request-support'
+gem 'xing', git: 'https://github.com/walski/xing.git', branch: 'add-contact-request-support'
 
 group :development do
   gem 'quiet_assets'

@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:walski/xing.git
+  remote: https://github.com/walski/xing.git
   revision: 84d7ffba3a6a14792259e2225cf7059b651227fc
   branch: add-contact-request-support
   specs:
