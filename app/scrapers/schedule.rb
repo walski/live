@@ -3,6 +3,7 @@ require 'open-uri'
 
 class Schedule
   URL = 'https://docs.google.com/spreadsheet/pub?key=0Au_LuhlBQUkEdHRSc3Y2Q3h1SEstVXlGVmw2RG80U0E&single=true&gid=0&range=A6%3AC99&output=csv'
+  UTC_OFFSET = -1.hour
 
   def initialize
     @now  = Time.now
@@ -27,7 +28,7 @@ class Schedule
     sessions = @doc.map do |line|
       time, topic, speaker = line
       hours, minutes = time.split(':').map(&:to_i)
-      time = day_of_event + hours.hours + minutes.minutes
+      time = day_of_event + hours.hours + minutes.minutes + UTC_OFFSET
 
       if topic && !topic.blank? && speaker && !speaker.blank?
         {'info' => topic, 'speaker' => speaker, 'time' => time}
