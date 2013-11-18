@@ -75,6 +75,6 @@ class BuddyController < ApplicationController
   protected
 
   def only_logged_in!
-    redirect_to '/', notice: "Must be logged in"
+    redirect_to '/', notice: "Must be logged in" unless current_user
   end
 end
